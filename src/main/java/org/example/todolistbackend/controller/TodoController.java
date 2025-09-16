@@ -2,12 +2,14 @@
 package org.example.todolistbackend.controller;
 
 
-
+import org.example.todolistbackend.dto.TodoCreateRequest;
 import org.example.todolistbackend.dto.TodoResponse;
 import org.example.todolistbackend.service.TodoService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -23,5 +25,13 @@ public class TodoController {
     @GetMapping
     public ResponseEntity<List<TodoResponse>> listTodos() {
         return ResponseEntity.ok(service.listAll());
+    }
+
+    @PostMapping
+    public ResponseEntity<TodoResponse> create(@Valid @RequestBody TodoCreateRequest req) {
+        TodoResponse resp = service.create(req);
+        // 可选：设置 Location: /todos/{id}
+        URI location = URI.create("/todos/" + resp.getId());
+        return ResponseEntity.created(location).body(resp); // 201 Created
     }
 }

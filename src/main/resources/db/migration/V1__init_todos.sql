@@ -1,0 +1,7 @@
+-- 表：todos (id, text, done)
+CREATE TABLE IF NOT EXISTS todos
+(
+    id   BIGINT PRIMARY KEY AUTO_INCREMENT,
+    text VARCHAR(255) NOT NULL,
+    done BOOLEAN      NOT NULL DEFAULT FALSE
+);

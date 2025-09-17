@@ -1,9 +1,5 @@
 package org.example.todolistbackend.service;
 
-
-
-
-
 import org.example.todolistbackend.domain.Todo;
 import org.example.todolistbackend.dto.TodoCreateRequest;
 import org.example.todolistbackend.dto.TodoResponse;
